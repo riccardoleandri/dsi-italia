@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronDown, Settings } from 'lucide-react'
 import { brands, tractors } from '../data/tractors'
 
-// Stats counter component
 function StatCounter({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const [count, setCount] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
@@ -53,16 +52,15 @@ export default function Home() {
     <>
       {/* ===== HERO ===== */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-        {/* Video background - sostituisci con il tuo video */}
+        {/* Video background */}
         <video
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-70"
           autoPlay
           loop
           muted
           playsInline
-          poster="/assets/hero-poster.jpg"
         >
-          <source src="/assets/hero-video.mp4" type="video/mp4" />
+          <source src="/hero-video.mp4" type="video/mp4" />
         </video>
 
         {/* Overlay */}
@@ -176,7 +174,7 @@ export default function Home() {
             {brands.map((brand, i) => (
               <div
                 key={brand.code}
-                className={`brand-card bg-white rounded-2xl p-8 border border-gray-100 reveal`}
+                className="brand-card bg-white rounded-2xl p-8 border border-gray-100 reveal"
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
                 <div className="text-4xl font-display font-black text-dsi-orange mb-2">{brand.code}</div>
@@ -253,18 +251,14 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Color swatches preview */}
             <div className="reveal-right">
               <div className="bg-white/10 rounded-2xl p-8">
                 <p className="text-white/50 text-xs tracking-widest uppercase mb-6">Anteprima Configurazione</p>
                 <div className="bg-white rounded-xl p-6 mb-6">
                   <img
-                    src="/assets/tractors/configurator-preview.jpg"
+                    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&auto=format&fit=crop"
                     alt="Trattore configurabile"
                     className="w-full h-48 object-contain"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&auto=format&fit=crop'
-                    }}
                   />
                 </div>
                 <div className="flex gap-3 justify-center">
@@ -299,12 +293,9 @@ export default function Home() {
               >
                 <div className="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
                   <img
-                    src={tractor.image}
+                    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&auto=format&fit=crop"
                     alt={tractor.model}
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&auto=format&fit=crop'
-                    }}
                   />
                 </div>
                 <div className="p-5">
