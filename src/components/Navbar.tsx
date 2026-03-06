@@ -28,7 +28,7 @@ export default function Navbar() {
     <>
       <nav
         id="main-navbar"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isTransparent
             ? 'bg-transparent'
             : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
@@ -37,16 +37,25 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-display font-black text-sm ${
-              isTransparent ? 'bg-white/20 text-white' : 'bg-dsi-green text-white'
-            }`}>
+            <img
+              src={isTransparent ? '/logo-white.png' : '/logo.png'}
+              alt="DSI Import"
+              className="h-10 w-auto"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement
+                target.style.display = 'none'
+                const fallback = target.nextElementSibling as HTMLElement
+                if (fallback) fallback.style.display = 'flex'
+              }}
+            />
+            {/* Fallback testo se logo non carica */}
+            <div
+              className={`hidden w-10 h-10 rounded-lg items-center justify-center font-display font-black text-sm ${
+                isTransparent ? 'bg-white/20 text-white' : 'bg-dsi-green text-white'
+              }`}
+            >
               DSI
             </div>
-            <span className={`font-display font-bold text-lg hidden sm:block ${
-              isTransparent ? 'text-white' : 'text-dsi-green'
-            }`}>
-              DSI Import
-            </span>
           </Link>
 
           {/* Desktop Nav */}
@@ -101,6 +110,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 bg-dsi-green flex flex-col items-center justify-center gap-8">
+          <img src="/logo-white.png" alt="DSI Import" className="h-16 w-auto mb-4"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+          />
           {navLinks.map(link => (
             <Link
               key={link.path}
